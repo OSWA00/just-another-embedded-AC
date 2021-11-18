@@ -57,7 +57,7 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-float Temp; // Global variable for temperature
+uint16_t Temp; // Global variable for temperature
 /* USER CODE END 0 */
 
 /**

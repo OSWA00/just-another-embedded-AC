@@ -42,4 +42,4 @@ uint8_t DS18B20_read (sensor s);
 // Function to read the temperature in Celsius
 // Receives the sensor to read from
 // Returns a float with the temperature
-float read_temp(sensor s);
+uint16_t read_temp(sensor s);

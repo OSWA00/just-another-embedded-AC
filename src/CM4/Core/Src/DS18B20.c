@@ -116,7 +116,7 @@ uint8_t DS18B20_read (sensor s)
 	return value;
 }
 
-float read_temp(sensor s)
+uint16_t read_temp(sensor s)
 {
     uint8_t Temp_byte1, Temp_byte2;
     uint16_t TEMP;
@@ -144,5 +144,6 @@ float read_temp(sensor s)
 	// Convert it to a float
     Temperature = (float)TEMP/16;
 
-    return Temperature;
+    //return Temperature;
+	return TEMP;
 }
