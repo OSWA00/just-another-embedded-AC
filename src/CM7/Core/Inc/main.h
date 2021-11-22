@@ -40,6 +40,7 @@ extern "C" {
 #include "event_groups.h"
 
 #include "i2c-lcd.h"
+#include "dimmer.h"
 
 /* USER CODE END Includes */
 
