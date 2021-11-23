@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "DS18B20.h"
+#include "DS18B20.h" // Library to use temperature sensor DS18B20
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,7 +57,7 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-float Temp;
+uint16_t Temp; // Global variable for temperature
 /* USER CODE END 0 */
 
 /**
@@ -101,6 +101,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  // Initialize the sensor in pin GPIO G14
   sensor s = DS18B20_init(GPIOG, GPIO_PIN_14);
   /* USER CODE END 2 */
 
@@ -111,6 +112,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    // Read temperature
 	  Temp = read_temp(s);
 	  HAL_Delay(1000);
   }

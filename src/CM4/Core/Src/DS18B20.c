@@ -1,18 +1,26 @@
 #include "DS18B20.h"
 
-
+// Use this struct to initialize and get readings
+// from the sensor
 sensor DS18B20_init(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
 {
+	// Initialize a struct sensor
     sensor s;
+	// Assign port and pin
     s.port = GPIOx;
     s.pin = GPIO_Pin;
+	// Return the struct
     return s;
 }
 
 void delay_us (int us)
 {
+	// Cycle for the amount of microseconds
     for (int i=0; i < us; i++){
-        for (int j=0; j < 4; j++); // 18 for M7; 4 for M4
+		// Cycle for 1 microsecond
+		// Using 400 MHz and 200 MHz: 18 for M7; 4 for M4
+		// Change accordingly
+        for (int j=0; j < 4; j++); 
     }
 }
 
@@ -44,7 +52,8 @@ uint8_t DS18B20_start (sensor s)
 	set_pin_input(s.port, s.pin);    // set the pin as input
 	delay_us (80);    // delay according to datasheet
 
-	if (!(HAL_GPIO_ReadPin (s.port, s.pin))) Response = 1;    // if the pin is low i.e the presence pulse is detected
+	// if the pin is low i.e the presence pulse is detected
+	if (!(HAL_GPIO_ReadPin (s.port, s.pin))) Response = 1;    
 	else Response = -1;
 
 	delay_us (400); // 480 us delay totally.
@@ -75,11 +84,11 @@ void DS18B20_write (uint8_t data, sensor s)
 		{
 			// write 0
 
-			set_pin_output(s.port, s.pin);
+			set_pin_output(s.port, s.pin); // set as output
 			HAL_GPIO_WritePin (s.port, s.pin, 0);  // pull the pin LOW
 			delay_us (50);  // wait for 60 us
 
-			set_pin_input(s.port, s.pin);
+			set_pin_input(s.port, s.pin); // set as input
 		}
 	}
 }
@@ -88,7 +97,7 @@ uint8_t DS18B20_read (sensor s)
 {
 	uint8_t value=0;
 
-	set_pin_input(s.port, s.pin);
+	set_pin_input(s.port, s.pin); // set as input
 
 	for (int i=0;i<8;i++)
 	{
@@ -107,7 +116,7 @@ uint8_t DS18B20_read (sensor s)
 	return value;
 }
 
-float read_temp(sensor s)
+uint16_t read_temp(sensor s)
 {
     uint8_t Temp_byte1, Temp_byte2;
     uint16_t TEMP;
@@ -126,10 +135,15 @@ float read_temp(sensor s)
     DS18B20_write (0xCC, s);  // skip ROM
     DS18B20_write (0xBE, s);  // Read Scratch-pad
 
+	// The sensor gives 9 bytes of data
+	// The read only gives 8 at a time
     Temp_byte1 = DS18B20_read(s);
     Temp_byte2 = DS18B20_read(s);
+	// Get the whole reading together
     TEMP = (Temp_byte2<<8)|Temp_byte1;
+	// Convert it to a float
     Temperature = (float)TEMP/16;
 
-    return Temperature;
+    //return Temperature;
+	return TEMP;
 }
