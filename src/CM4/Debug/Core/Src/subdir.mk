@@ -5,21 +5,30 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/DS18B20.c \
+../Core/Src/freertos.c \
 ../Core/Src/main.c \
+../Core/Src/shared_memory.c \
 ../Core/Src/stm32h7xx_hal_msp.c \
 ../Core/Src/stm32h7xx_it.c \
 ../Core/Src/syscalls.c \
 ../Core/Src/sysmem.c 
 
 OBJS += \
+./Core/Src/DS18B20.o \
+./Core/Src/freertos.o \
 ./Core/Src/main.o \
+./Core/Src/shared_memory.o \
 ./Core/Src/stm32h7xx_hal_msp.o \
 ./Core/Src/stm32h7xx_it.o \
 ./Core/Src/syscalls.o \
 ./Core/Src/sysmem.o 
 
 C_DEPS += \
+./Core/Src/DS18B20.d \
+./Core/Src/freertos.d \
 ./Core/Src/main.d \
+./Core/Src/shared_memory.d \
 ./Core/Src/stm32h7xx_hal_msp.d \
 ./Core/Src/stm32h7xx_it.d \
 ./Core/Src/syscalls.d \

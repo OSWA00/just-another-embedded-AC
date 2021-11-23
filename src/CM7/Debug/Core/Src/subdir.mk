@@ -8,6 +8,7 @@ C_SRCS += \
 ../Core/Src/freertos.c \
 ../Core/Src/i2c-lcd.c \
 ../Core/Src/main.c \
+../Core/Src/shared_memory.c \
 ../Core/Src/stm32h7xx_hal_msp.c \
 ../Core/Src/stm32h7xx_it.c \
 ../Core/Src/syscalls.c \
@@ -17,6 +18,7 @@ OBJS += \
 ./Core/Src/freertos.o \
 ./Core/Src/i2c-lcd.o \
 ./Core/Src/main.o \
+./Core/Src/shared_memory.o \
 ./Core/Src/stm32h7xx_hal_msp.o \
 ./Core/Src/stm32h7xx_it.o \
 ./Core/Src/syscalls.o \
@@ -26,6 +28,7 @@ C_DEPS += \
 ./Core/Src/freertos.d \
 ./Core/Src/i2c-lcd.d \
 ./Core/Src/main.d \
+./Core/Src/shared_memory.d \
 ./Core/Src/stm32h7xx_hal_msp.d \
 ./Core/Src/stm32h7xx_it.d \
 ./Core/Src/syscalls.d \

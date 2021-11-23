@@ -103,10 +103,13 @@ int main(void)
   /* USER CODE BEGIN 2 */
   // Initialize the sensor in pin GPIO G14
   sensor s = DS18B20_init(GPIOG, GPIO_PIN_14);
+  volatile struct shared_data * const xfr_ptr = (struct shared_data *) 0x38000000;
+  xfr_ptr->sts_4to7 = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  uint16_t * xfr_data; // pointer to transfer data
   while (1)
   {
     /* USER CODE END WHILE */
@@ -114,7 +117,13 @@ int main(void)
     /* USER CODE BEGIN 3 */
     // Read temperature
 	  Temp = read_temp(s);
-	  HAL_Delay(1000);
+    xfr_data = * temp;
+    if (xfr_ptr->sts_4to7 == 0)
+    {
+      send_to_m7(xfr_data, xfr_ptr);
+      xfr_ptr->sts_4to7 = 1;
+    }
+    HAL_Delay(10);
   }
   /* USER CODE END 3 */
 }
