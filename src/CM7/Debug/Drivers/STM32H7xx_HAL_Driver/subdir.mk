@@ -6,6 +6,8 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 D:/projects/embedded_AC/src/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c \
+D:/projects/embedded_AC/src/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c \
+D:/projects/embedded_AC/src/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c \
 D:/projects/embedded_AC/src/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c \
 D:/projects/embedded_AC/src/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c \
 D:/projects/embedded_AC/src/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c \
@@ -26,6 +28,8 @@ D:/projects/embedded_AC/src/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_e
 
 OBJS += \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal.o \
+./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc.o \
+./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc_ex.o \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_cortex.o \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_dma.o \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_dma_ex.o \
@@ -46,6 +50,8 @@ OBJS += \
 
 C_DEPS += \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal.d \
+./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc.d \
+./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc_ex.d \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_cortex.d \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_dma.d \
 ./Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_dma_ex.d \
@@ -67,6 +73,10 @@ C_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal.o: D:/projects/embedded_AC/src/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c Drivers/STM32H7xx_HAL_Driver/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DCORE_CM7 -DUSE_HAL_DRIVER -DSTM32H745xx -c -I../Core/Inc -I../../Drivers/STM32H7xx_HAL_Driver/Inc -I../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../Drivers/CMSIS/Include -I../../Middlewares/Third_Party/FreeRTOS/Source/include -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
+Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc.o: D:/projects/embedded_AC/src/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c Drivers/STM32H7xx_HAL_Driver/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DCORE_CM7 -DUSE_HAL_DRIVER -DSTM32H745xx -c -I../Core/Inc -I../../Drivers/STM32H7xx_HAL_Driver/Inc -I../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../Drivers/CMSIS/Include -I../../Middlewares/Third_Party/FreeRTOS/Source/include -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
+Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_adc_ex.o: D:/projects/embedded_AC/src/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c Drivers/STM32H7xx_HAL_Driver/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DCORE_CM7 -DUSE_HAL_DRIVER -DSTM32H745xx -c -I../Core/Inc -I../../Drivers/STM32H7xx_HAL_Driver/Inc -I../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../Drivers/CMSIS/Include -I../../Middlewares/Third_Party/FreeRTOS/Source/include -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
 Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_cortex.o: D:/projects/embedded_AC/src/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c Drivers/STM32H7xx_HAL_Driver/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DCORE_CM7 -DUSE_HAL_DRIVER -DSTM32H745xx -c -I../Core/Inc -I../../Drivers/STM32H7xx_HAL_Driver/Inc -I../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../../Drivers/CMSIS/Include -I../../Middlewares/Third_Party/FreeRTOS/Source/include -I../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
