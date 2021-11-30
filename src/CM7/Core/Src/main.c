@@ -60,7 +60,11 @@ static void MX_I2C1_Init(void);
 
 /* USER CODE BEGIN PFP */
 void vPrintLCD(void *pvParameters);
-void vTask2(void *pvParameters);
+void vReadTemp(void *pvParameters);
+void vReadPot(void *pvParameters);
+void vSendDimmer(void *pvParameters);
+void vLevelFans(void *pvParameters);
+void vCalculatePID(void *pvParameters);
 
 /* USER CODE END PFP */
 
@@ -296,7 +300,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void vPrintLCD(void *pvParameters)
 {
-  const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
+  const TickType_t xDelay = 500 / portTICK_PERIOD_MS;
   int received = 0; 
   char buffer[2];
   for (;;)
@@ -312,20 +316,61 @@ void vPrintLCD(void *pvParameters)
   }
 }
 
-void vTask2(void *pvParameters)
+void vPrintLCD(void *pvParameters)
 {
-  uint32_t count = 0;
+  const TickType_t xDelay = 700 / portTICK_PERIOD_MS;
+  int received = 0; 
+  char buffer[2];
   for (;;)
   {
-    xQueueSend(queue1, &count, portMAX_DELAY);
-    count++;
-    if (count == 10)
-    {
-      count = 0;
-    }
+    xQueueReceive(queue1, &received, portMAX_DELAY);
+    lcd_put_cur(0, 0);
+    lcd_send_string("Hello World");
+    lcd_put_cur(1,0);
+    snprintf(buffer, 2, "%d", received);
+    lcd_send_string(buffer);
+    vTaskDelay( xDelay );
+}
+void vReadTemp(void *pvParameters)
+{
+  const TickType_t xDelay = 700 / portTICK_PERIOD_MS;
+  for(;;)
+  {
+
   }
 }
-
+void vReadPot(void *pvParameters)
+{
+  const TickType_t xDelay = 700 / portTICK_PERIOD_MS;
+  for(;;)
+  {
+    vTaskDelay( xDelay );
+  }
+}
+void vSendDimmer(void *pvParameters)
+{
+  const TickType_t xDelay = 700 / portTICK_PERIOD_MS;
+  for(;;)
+  {
+    vTaskDelay( xDelay );
+  }
+}
+void vLevelFans(void *pvParameters)
+{
+  const TickType_t xDelay = 700 / portTICK_PERIOD_MS;
+  for(;;)
+  {
+    vTaskDelay( xDelay );
+  }
+}
+void vCalculatePID(void *pvParameters)
+{
+  const TickType_t xDelay = 700 / portTICK_PERIOD_MS;
+  for(;;)
+  {
+    vTaskDelay( xDelay );
+  }
+}
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN 5 */
